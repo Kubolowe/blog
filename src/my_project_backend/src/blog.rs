@@ -1,19 +1,20 @@
 use candid::CandidType;
+use ic_cdk::api::time;
 
 #[derive(Clone, CandidType)]
 pub struct Blog {
     title: String,
-    date: u32, // 0 - 255
+    date: u64, // 0 - 255
     content: String,
     tags: Vec<String>
 }
 
 impl Blog { // implementacja
 
-    pub fn new(title: String, date: u32, content: String, tags: Vec<String>) -> Self {
+    pub fn new(title: String, content: String, tags: Vec<String>) -> Self {
         Self {
             title,
-            date,
+            date: time(),
             content,
             tags,
         }
