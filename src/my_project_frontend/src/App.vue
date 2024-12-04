@@ -14,10 +14,20 @@ async function handleSubmit(e) {
   const tags = target.querySelector('#tags').value;
   const splitedTags = tags.split(",");
 
-  await my_project_backend.add_blog(title, content, splitedTags)
+  await my_project_backend.add_blog(title, content, splitedTags);
+  await getBlogs();
 
 }
-
+  async function getBlogs() {
+    const tempBlogs = await my_project_backend.get_blogs();
+    blogs.value = tempBlogs.map((blog) => {
+      return {
+        ...blog,
+        date: blog.date.toString()
+      }
+    })
+  }
+getBlogs()
 </script>
 
 <template>
@@ -31,5 +41,6 @@ async function handleSubmit(e) {
       <div><p>Tags</p><input id="tags" alt="Tags" type="text" /></div>
       <button type="submit">Click to add!</button>
     </form>
+    {{ blogs }}
   </main>
 </template>
