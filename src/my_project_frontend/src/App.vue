@@ -32,18 +32,38 @@ getBlogs()
 
 <template>
   <main class="container mx-auto">
-
-    
-
-    <img src="/logo2.svg" alt="DFINITY logo" />
+    <img src="/logo2.svg" alt="DFINITY logo" class="mx-auto mt-4" />
     <br />
     <br />
-    <form action="#" @submit="handleSubmit">
-      <div><p>Title</p><input id="title" alt="Title" type="text" /></div>
-      <div><p>Content</p><input id="content" alt="Content" type="text" /></div>
-      <div><p>Tags</p><input id="tags" alt="Tags" type="text" /></div>
-      <button type="submit">Click to add!</button>
+    <form class="grid gap-4 pb-4 mb-4 border-solid border-b-2 border-indigo-500" action="#" @submit="handleSubmit">
+      <div><p class="text-black font-bold">Title</p>
+        <input id="title" alt="Title" type="text" 
+        class="w-full rounded-full py-1 px-4 outline-none border-solid border-2 hover:border-indigo-700"/>
+      </div>
+      <div><p class="text-black font-bold">Content</p>
+        <textarea id="content" alt="Content" type="text" 
+        class="w-full rounded-sm py-1 px-4 outline-none min-h-[100px] border-solid border-2 hover:border-indigo-700"/>
+      </div>
+      <div><p class="text-black font-bold">Tags</p>
+        <input id="tags" alt="Tags" type="text" 
+        class="w-full rounded-full py-1 px-4 outline-none"/>
+      </div>
+      <div class="flex justify-end">
+      <button type="submit" class="text-white bg-indigo-400 rounded-3xl px-4 py-1 border-solid border-2 hover:border-indigo-700">Click to add!</button>
+    </div>
     </form>
-    {{ blogs }}
+    <div>
+      <div v-for="blog in blogs">
+        <h3>{{ blog.title }}</h3>
+        <p> {{ blog.content }}</p>
+        <div>
+          {{ blog.date }}
+          {{  blog.tags }}
+        </div>
+
+      </div>
+    </div>
+
+
   </main>
 </template>
