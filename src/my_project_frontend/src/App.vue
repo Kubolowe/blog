@@ -84,17 +84,8 @@ getBlogs();
           <div
             v-for="(tag, id) in tags"
             :key="id"
-            class="
-              text-white 
-              bg-indigo-400 
-              rounded-3xl 
-              py-1 
-              px-4
-              text-sm
-              w-fit
-            "
-            @click="removeTag(id)"
-          >
+            class="text-white bg-indigo-400 rounded-3xl py-1 px-4 text-sm w-fit flex items-center gap-2">
+            <font-awesome-icon :icon="['fas', 'x']" style="color: #ff0000; font-size: 14px;" @click="removeTag(id)"  />
             {{ tag }}
           </div>
         </div>
@@ -126,3 +117,4 @@ getBlogs();
     </div>
   </main>
 </template>
+
